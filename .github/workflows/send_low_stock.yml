@@ -1,21 +1,16 @@
-name: Send Low Stock Report
+name: Send Low Stock Report Daily
 
 on:
   schedule:
-    - cron: '30 12 * * *'  # Runs every day at 6:00 PM IST (12:30 PM UTC)
+    - cron: ''55 13 * * *''  # Every day 12:30 PM UTC (6 PM IST)
 
 jobs:
   send-report:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # auto timeout after 10 minutes
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Run Flask low stock report
+      - name: Send low stock report
         run: |
-          # Install Python and dependencies
-          python3 -m pip install --upgrade pip
-          pip install requests boto3 python-telegram-bot
-
-          # Run your script or curl your Flask endpoint
-          curl http://your-flask-app-url/send-low-stock
+          echo "Triggering low stock report endpoint..."
+          curl --fail --max-time 600 https://posweb-delta.vercel.app/send-low-stock
