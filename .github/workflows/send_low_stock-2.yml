@@ -1,0 +1,16 @@
+name: Send Low Stock Report Daily
+
+on:
+  schedule:
+    - cron: '15 12 * * *'  
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10  # auto timeout after 10 minutes
+
+    steps:
+      - name: Send low stock report
+        run: |
+          echo "Triggering low stock report endpoint..."
+          curl --fail --max-time 600 https://posweb-delta.vercel.app/send-low-stock-2
