@@ -2,7 +2,7 @@ name: Send Low Stock Report Daily
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Every day 12:30 PM UTC (6 PM IST)
+    - cron: '0 12 * * *'  
 
 jobs:
   send-report:
@@ -13,4 +13,4 @@ jobs:
       - name: Send low stock report
         run: |
           echo "Triggering low stock report endpoint..."
-          curl --fail --max-time 600 https://posweb-delta.vercel.app/send-low-stock
+          curl --fail --max-time 600 https://posweb-delta.vercel.app/send-low-stock-1
