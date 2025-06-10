@@ -1,4 +1,4 @@
-name: Send Low Stock Report Daily
+name: daily sales report varanvasi
 
 on:
   schedule:
