@@ -1,0 +1,16 @@
+name: daily sales report mangal
+
+on:
+  schedule:
+    - cron: '30 13 * * *'  
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10  # auto timeout after 10 minutes
+
+    steps:
+      - name: Send low stock report
+        run: |
+          echo "Triggering low stock report endpoint..."
+          curl --fail --max-time 600 https://posstaffmangal.vercel.app/send-daily-sales-summary
