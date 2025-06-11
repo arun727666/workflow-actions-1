@@ -16,4 +16,4 @@ jobs:
         run: |
           curl --fail --silent --show-error \
                -H "Authorization: Bearer ${{ secrets.ALERT_API_KEY }}" \
-               https://your-domain.com/api/alerts/today
+               https://creditcardshed.vercel.app/api/alerts/today
