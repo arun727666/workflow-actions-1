@@ -1,0 +1,19 @@
+name: CC Alerts
+
+on:
+  schedule:
+    - cron: '0 2 * * *'      # 2:00 AM UTC
+    - cron: '0 6 * * *'      # 6:00 AM UTC
+    - cron: '30 13 * * *'    # 1:30 PM UTC
+    - cron: '30 15 * * *'    # 3:30 PM UTC
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3  # ⏱️ Kill job if it runs longer than 3 minutes
+    steps:
+      - name: Send daily alert request
+        run: |
+          curl --fail --silent --show-error \
+               -H "Authorization: Bearer ${{ secrets.ALERT_API_KEY }}" \
+               https://your-domain.com/api/alerts/today
